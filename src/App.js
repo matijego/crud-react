@@ -31,10 +31,6 @@ function App() {
           <Route path="/persona/:id">
                 <Datos/>
             </Route>
-
-          <Route path="/tuvieja">
-              <Tuvieja/>
-          </Route>
           
           <Route path="/componente">
               <Componente/>
