@@ -10,7 +10,7 @@ import {
 } from "react-router-dom";
 
 //COMPONENTES IMPORTADOS
-import Tuvieja from './components/Tuvieja';
+
 import Componente from './components/Componente';
 import Inicio from './components/Inicio';
 import Datos from './components/Datos';
