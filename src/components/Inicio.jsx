@@ -10,26 +10,44 @@ const Inicio = () => {
 
     const obtenerDatos = async() => {
         
-        const data = await fetch('http://localhost:4000/api/personas');
+        const data = await fetch('http://localhost:1997/api/placas');
         const persona = await data.json()
-        console.log(persona);
-        setPersona(persona);
+
+        //Se debe colocar .body porque la funcion map solo toma arrays
+        console.log(persona.body);
+        setPersona(persona.body);
         
     };
 
     return (
-        <div>
-            <h1 className="text-center">Personas</h1>
-            <ul>
-                {
-                    
-                    persona.map(item => (
-                        <Link to={`/persona/${item._id}`} key={item._id}>
-                            <li className="mt-2 h4"> Nombre: {item.nombre} </li>
-                        </Link>
-                    ))
-                }
-            </ul>
+        <div className='container'>
+            
+            <div className="row">
+                
+                    {
+                        
+                        persona.map((item, index) => (
+                            <div className="col-3 text-center mt-3" key={item._id}>
+                                <Link to={`/persona/${item._id}`} key={item._id}>
+                                <div className="card shadow-sm">
+                                <img className="card-img-top" src={item.urlImg} alt={item.nombre_placa}/>
+                                <div className="card-body">
+                                    <h5 className="card-title">{item.nombre_placa}</h5>
+                                    
+                                </div>
+                                </div>
+                                </Link>
+                            </div>
+                        ))
+                    }
+                
+            </div>
+
+
+
+
+
+
         </div>
     )
 }
