@@ -15,6 +15,8 @@ import Componente from './components/Componente';
 import Inicio from './components/Inicio';
 import Datos from './components/Datos';
 import Navbar from "./components/Navbar";
+import Supplies from './components/Supplies'
+
 
 
 
@@ -28,12 +30,18 @@ function App() {
         <Navbar/>
         
         <Switch>
-          <Route path="/persona/:id">
+          <Route path="/placa/:id">
                 <Datos/>
             </Route>
           
           <Route path="/componente">
               <Componente/>
+          </Route>
+
+          <Route path="/supplies">
+
+            <Supplies/>
+
           </Route>
 
           <Route path="/" exact>
