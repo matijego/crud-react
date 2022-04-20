@@ -1,14 +1,14 @@
 //import {Link} from 'react-router-dom'
-import React from 'react'
+import React, {useRef} from 'react'
 import {useParams} from 'react-router-dom' 
 import Axios from 'axios'
 import io from 'socket.io-client';
-const socket = io.connect("http://localhost:1997");
+
 
 
 
 const Supplies = () => {
-
+    const socketRef = useRef();
     const {id} = useParams();
     const [datos, setDatos] = React.useState([]);
 
@@ -19,22 +19,28 @@ const Supplies = () => {
 
 
     React.useEffect(() => {
+       
+        socketRef.current = io.connect("http://localhost:1997");
+        
+        socketRef.current.on("recibeProveedor", async () => {
+            const data = await fetch(`http://localhost:1997/api/providers`);
+            const datos = await data.json()
+            setDatos(datos.body);
+            console.log('Proveedor enviado por socket: ' + datos)
+        });
+
         const obtenerDatos = async() => {
         
             const data = await fetch(`http://localhost:1997/api/providers`);
             const datos = await data.json()
-            
             setDatos(datos.body);
+            console.log('test 1')
         };
         obtenerDatos();
+
     }, [id]);
 
-    React.useEffect(() => {
-        socket.on("recibeProveedor", (data) => {
-            console.log('Proveedor enviado por socket: ' + data)
-        })
-    });
-   
+    
     
     //CAPTURADOR DE DATOS INGRESADOS EN EL INPUT EN TIEMPO REAL
     const controladorInput = (event) => {
@@ -56,9 +62,10 @@ const Supplies = () => {
         let url = "http://localhost:1997/api/providers";
         Axios.post(url,{provName: proveedor.nombre, description: proveedor.descripcion})
             .then(response => {
+                
                 console.log(response);
             });
-        socket.emit()
+        socketRef.current.emit('recibeProveedor', 'wep');
         alert('Proveedor: ' + proveedor.nombre +' agregado!')
         proveedor.nombre=""
         proveedor.descripcion=""
