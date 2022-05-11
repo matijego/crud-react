@@ -59,13 +59,14 @@ const Supplies = () => {
         //EVITA LA RECARGAR DE LA PÁGINA AL PRESIONAR EL BOTÓN SUBMIT
         event.preventDefault();
         console.log(proveedor.nombre + ' ' + proveedor.descripcion)
+        socketRef.current.emit('recibeProveedor', 'dato enviado');
         let url = "http://localhost:1997/api/providers";
         Axios.post(url,{provName: proveedor.nombre, description: proveedor.descripcion})
             .then(response => {
                 
                 console.log(response);
             });
-        socketRef.current.emit('recibeProveedor', 'wep');
+        socketRef.current.emit('recibeProveedor', 'dato enviado');
         alert('Proveedor: ' + proveedor.nombre +' agregado!')
         proveedor.nombre=""
         proveedor.descripcion=""

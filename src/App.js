@@ -11,14 +11,11 @@ import {
 
 //COMPONENTES IMPORTADOS
 
-import Componente from './components/Componente';
 import Inicio from './components/Inicio';
-import Datos from './components/Datos';
 import Navbar from "./components/Navbar";
-import Supplies from './components/Supplies'
-
-
-
+import Products from './components/products/FormListProducts'
+import Firmwares from './components/firmwares/FormFirmwares'
+import Devices from './components/devices/addDevice'
 
 
 
@@ -30,19 +27,27 @@ function App() {
         <Navbar/>
         
         <Switch>
-          <Route path="/placa/:id">
-                <Datos/>
-            </Route>
-          
-          <Route path="/componente">
-              <Componente/>
+
+
+          <Route path="/devices">
+
+            <Devices/>
+
+          </Route>   
+
+          <Route path="/firmwares">
+
+            <Firmwares/>
+
           </Route>
 
-          <Route path="/supplies">
 
-            <Supplies/>
+          <Route path="/products">
+
+            <Products/>
 
           </Route>
+
 
           <Route path="/" exact>
               <Inicio/>

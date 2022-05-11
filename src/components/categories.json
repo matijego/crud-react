@@ -1,0 +1,25 @@
+[
+    
+    {
+        "_id": "products",
+        "nombre": "+ Productos",
+        "urlImg": ""
+    },
+
+    {
+        "_id": "firmwares",
+        "nombre": "+ Firmwares",
+        "urlImg": ""
+    },
+
+    {
+        "_id": "devices",
+        "nombre": "+ Dispositivos",
+        "urlImg": ""
+    }
+
+
+
+
+
+]

@@ -1,9 +1,9 @@
 import {Link} from 'react-router-dom'
 import React from 'react'
-let placas = require('./placas.json');
+let categories = require('./categories.json');
 
 const Inicio = () => {
-    const [placa, setPlaca] = React.useState([]);
+    const [category, setCategory] = React.useState([]);
 
     React.useEffect(() => {
         obtenerDatos();
@@ -11,11 +11,11 @@ const Inicio = () => {
 
     const obtenerDatos = () => {
         
-        const data = placas;
-        const placa =  data;
-        console.log(placa);
+        const data = categories;
+        const category =  data;
+        console.log(category);
         
-        setPlaca(placa);
+        setCategory(category);
         
     };
 
@@ -27,9 +27,9 @@ const Inicio = () => {
             
                 {
                     
-                    placa.map(item => (
-                       <div className="col-3 mt-4" key={item._id}>
-                        <Link to={`/placa/${item._id}`} key={item._id}>
+                    category.map(item => (
+                       <div className="col-4 mt-2 p-5" key={item._id}>
+                        <Link to={`/${item._id}`} key={item._id}>
                         <div className="card shadow rounded" >
                         
                             <img className="card-img-top" src={item.urlImg} alt=""/>
